@@ -21,28 +21,25 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.order",
-        "title": "Order Sushi"
-      },
-      {
         "command": "extension.reset",
         "title": "Cover Reset"
       }
     ],
     "configuration": {
-      "title": "Sushi Buffet Preferences",
+      "type": "object",
+      "title": "SushiBuffetPreferences",
       "properties": {
-        "sushiBuffet.opacity": {
+        "SushiBuffetPreferences.enable": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable Flow Sushi"
+        },
+        "SushiBuffetPreferences.opacity": {
             "type": "number",
             "maximum": 1,
             "minimum": 0.1,
-            "default": 0.2,
+            "default": 0.8,
             "description": "Background opacity / 透過(0.1 - 1)"
-        },
-        "sushiBuffet.imagePath": {
-            "type": "string",
-            "default": "",
-            "description": "Background image path"
         }
       }
     }

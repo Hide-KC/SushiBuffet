@@ -1,65 +1,64 @@
 # sushi-buffet README
 
-This is the README for your extension "sushi-buffet". After writing up a brief description, we recommend including the following sections.
+all-you-can-eat Sushi while you are coding on VS Code.
 
-## Features
+お寿司が好きな IT エンジニアのための拡張機能です。
+設定を有効にすると、VS Code の新しいウィンドウを立ち上げたときに寿司が流れます。
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Windows 10 で動作確認済、Mac は未確認です。ご容赦ください。
 
-For example if there is an image subfolder under your extension project workspace:
+## 特徴
 
-\!\[feature X\]\(images/feature-x.png\)
+新しいウィンドウを立ち上げたとき、背景にお寿司が流れます。
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+VS Code の画面を構成する`workbench.main.css`を直接編集するため、
+拡張機能が有効状態だと次のような警告が表示されます。
 
-## Requirements
+* タイトルバーに \[サポート対象外] の表示
+* 「VS Code が壊れている可能性があります。」のエラーメッセージ
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+動作には特に影響はありませんが、気になる方はご利用をお控えください。
 
-## Extension Settings
+また、最初の拡張機能有効時に`workbench.main.css`をコピーした`workbench.main.css.backup`を生成します。
+万が一環境を汚してしまった場合は、`workbench.main.css`ファイルを削除し、
+`workbench.main.css.backup`を利用してください（`.backup`の拡張子は消してください。）。
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### アンインストールについて
 
-For example:
+アンインストール後、\[サポート対象外]の表示や上記エラーメッセージが消えない場合は、次をお試しください。
 
-This extension contributes the following settings:
+* `workbench.main.css`を開いていただき、最後の改行を消す
+* または、`workbench.main.css.backup`に置き換える
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+VS Code を再起動すれば表記がなくなります。
 
-## Known Issues
+## 設定
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+設定画面から "Sushi Buffet Preferences" を検索すると、次の設定項目があります。
+設定を変更した場合、次の VS Code ウィンドウの立ち上げ時から有効になります。
 
-## Release Notes
+* `sushiBuffet.enable`: 壁紙にお寿司を設定します。
+* `sushiBuffet.opacity`: お寿司の透過率を設定します。0.1 ~ 1の範囲で設定してください。
 
-Users appreciate release notes as you update your extension.
+## コマンド
+
+* `extension.reset`: `workbench.main.css`の記述をリセットします。
+
+なお、`sushiBuffet.enable`が無効になっている場合、拡張機能が非アクティブ化（ウィンドウを閉じる等）するたびに
+`workbench.main.css`の記述を元の状態に戻しています。
+
+そのため、このコマンド自体はあまり意味はありません。。。
+
+## リリースノート
 
 ### 1.0.0
 
-Initial release of ...
+Initial release
 
-### 1.0.1
+## バグ報告
 
-Fixed issue #.
+次の連絡先がつながると思います。
+ネタアプリなのでやる気が出れば対応します。
 
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+* Twitter: @kcpoipoi
+* Gmail: kcs.dev.labo@gmail.com

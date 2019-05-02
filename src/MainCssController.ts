@@ -62,8 +62,8 @@ export default class MainCssController {
       }
     }
 
-    const prefs = vscode.workspace.getConfiguration('Sushi Buffet Preferences');
-    const opacity = prefs.get<number|undefined>('sushiBuffet.opacity') ? prefs.get<number|undefined>('sushiBuffet.opacity') : 0.8;
+    const prefs = vscode.workspace.getConfiguration('SushiBuffetPreferences');
+    const opacity = prefs.get<number|undefined>('opacity') ? prefs.get<number|undefined>('opacity') : 0.8;
     
     return `/\\*ext-${this.extName}-start\\*/body\\{background-image:${urls};background-position:left top, 25% top, 50% top, 75% top, right top,left 25%, 25% 25%, 50% 25%, 75% 25%, right 25%,left 50%, 25% 50%, 50% 50%, 75% 50%, right 50%,left 75%, 25% 75%, 50% 75%, 75% 75%, right 75%,left bottom, 25% bottom, 50% bottom, 75% bottom, right bottom;background-repeat:no-repeat;background-attachment:fixed;background-size:auto 20%;opacity:${opacity};animation:slideIn 2.5s ease-in-out 1s 1 normal\\}@keyframes slideIn \\{0% \\{opacity: ${opacity};background-position:100% top, 150% top, 150% top, 150% top, 150% top, 150% 25%, 125% 25%, 150% 25%, 150% 25%, 150% 25%, 150% 50%, 150% 50%, 150% 50%, 150% 50%, 150% 50%, 150% 75%, 150% 75%, 150% 75%, 175% 75%, 150% 75%, 150% bottom, 150% bottom, 150% bottom, 150% bottom, 200% bottom;\\}50% \\{opacity: ${opacity};background-position:-200% top, 150% top, 150% top, 150% top, 150% top, 150% 25%, -175% 25%, 150% 25%, 150% 25%, 150% 25%, 150% 50%, 150% 50%, -150% 50%, 150% 50%, 150% 50%, 150% 75%, 150% 75%, 150% 75%, -125% 75%, 150% 75%, 150% bottom, 150% bottom, 150% bottom, 150% bottom, -100% bottom;\\}100% \\{opacity: ${opacity};background-position:left top, 25% top, 50% top, 75% top, right top,left 25%, 25% 25%, 50% 25%, 75% 25%, right 25%,left 50%, 25% 50%, 50% 50%, 75% 50%, right 50%,left 75%, 25% 75%, 50% 75%, 75% 75%, right 75%,left bottom, 25% bottom, 50% bottom, 75% bottom, right bottom;\\}\\}/\\*ext-${this.extName}-end\\*/`;
   }

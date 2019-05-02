@@ -31,8 +31,10 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
-  console.log('deactivate');
-  if (require.main){
+  const prefs = vscode.workspace.getConfiguration("SushiBuffetPreferences");
+  const enable = prefs.get<boolean|undefined>('enable');
+
+  if (require.main && !enable){
     const base = path.dirname(require.main.filename);
     const filePath = path.join(base, 'vs', 'workbench', 'workbench.main.css');
 

@@ -1,5 +1,6 @@
 {
   "name": "sushi-buffet",
+  "icon": "main_icon.png",
   "publisher": "kcpoipoi",
   "displayName": "Sushi Buffet",
   "description": "all-you-can-eat Sushi during coding",

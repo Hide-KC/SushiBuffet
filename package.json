@@ -3,7 +3,7 @@
   "publisher": "kcpoipoi",
   "displayName": "Sushi Buffet",
   "description": "all-you-can-eat Sushi during coding",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.33.0"
   },

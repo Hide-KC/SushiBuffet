@@ -2,14 +2,12 @@
 
 all-you-can-eat Sushi while you are coding on VS Code.
 
+## Features
+
 お寿司が好きな IT エンジニアのための拡張機能です。
 設定を有効にすると、VS Code の新しいウィンドウを立ち上げたときに寿司が流れます。
 
 Windows 10 で動作確認済、Mac は未確認です。ご容赦ください。
-
-## 特徴
-
-新しいウィンドウを立ち上げたとき、背景にお寿司が流れます。
 
 VS Code の画面を構成する`workbench.main.css`を直接編集するため、
 拡張機能が有効状態だと次のような警告が表示されます。
@@ -23,7 +21,7 @@ VS Code の画面を構成する`workbench.main.css`を直接編集するため�
 万が一環境を汚してしまった場合は、`workbench.main.css`ファイルを削除し、
 `workbench.main.css.backup`を利用してください（`.backup`の拡張子は消してください。）。
 
-### アンインストールについて
+### Uninstall
 
 アンインストール後、\[サポート対象外]の表示や上記エラーメッセージが消えない場合は、次をお試しください。
 
@@ -32,7 +30,7 @@ VS Code の画面を構成する`workbench.main.css`を直接編集するため�
 
 VS Code を再起動すれば表記がなくなります。
 
-## 設定
+## Extension Settings
 
 設定画面から "Sushi Buffet Preferences" を検索すると、次の設定項目があります。
 設定を変更した場合、次の VS Code ウィンドウの立ち上げ時から有効になります。
@@ -40,7 +38,7 @@ VS Code を再起動すれば表記がなくなります。
 * `sushiBuffet.enable`: 壁紙にお寿司を設定します。
 * `sushiBuffet.opacity`: お寿司の透過率を設定します。0.1 ~ 1の範囲で設定してください。
 
-## コマンド
+## Command
 
 * `extension.reset`: `workbench.main.css`の記述をリセットします。
 
@@ -49,16 +47,13 @@ VS Code を再起動すれば表記がなくなります。
 
 そのため、このコマンド自体はあまり意味はありません。。。
 
-## リリースノート
+## Release Notes
 
 ### 1.0.0
 
 Initial release
 
-## バグ報告
-
-次の連絡先がつながると思います。
-ネタアプリなのでやる気が出れば対応します。
+## Connect
 
 * Twitter: @kcpoipoi
 * Gmail: kcs.dev.labo@gmail.com

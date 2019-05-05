@@ -7,6 +7,8 @@ all-you-can-eat Sushi while you are coding on VS Code.
 お寿司が好きな IT エンジニアのための拡張機能です。
 設定を有効にすると、VS Code の新しいウィンドウを立ち上げたときに寿司が流れます。
 
+![demo](flow_sushi_release.gif)
+
 Windows 10 で動作確認済、Mac は未確認です。ご容赦ください。
 
 VS Code の画面を構成する`workbench.main.css`を直接編集するため、
@@ -53,7 +55,7 @@ VS Code を再起動すれば表記がなくなります。
 
 Initial release
 
-## Connect
+## Contact
 
 * Twitter: @kcpoipoi
 * Gmail: kcs.dev.labo@gmail.com

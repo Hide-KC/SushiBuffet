@@ -4,7 +4,7 @@
   "publisher": "kcpoipoi",
   "displayName": "Sushi Buffet",
   "description": "all-you-can-eat Sushi while you are coding on VS Code.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "vscode": "^1.33.0"
   },
@@ -36,11 +36,11 @@
           "description": "Enable Flow Sushi"
         },
         "SushiBuffetPreferences.opacity": {
-            "type": "number",
-            "maximum": 1,
-            "minimum": 0.1,
-            "default": 0.8,
-            "description": "Background opacity / 透過(0.1 - 1)"
+          "type": "number",
+          "maximum": 1,
+          "minimum": 0.1,
+          "default": 0.8,
+          "description": "Background opacity / 透過(0.1 - 1)"
         }
       }
     }
@@ -48,9 +48,7 @@
   "files": [
     "./res"
   ],
-  "directories": {
-
-  },
+  "directories": {},
   "bugs": {
     "url": "https://github.com/Hide-KC/SushiBuffet/issues",
     "email": "kcs.dev.labo@gmail.com"

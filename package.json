@@ -20,12 +20,6 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "extension.reset",
-        "title": "Cover Reset"
-      }
-    ],
     "configuration": {
       "type": "object",
       "title": "SushiBuffetPreferences",

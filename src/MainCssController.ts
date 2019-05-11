@@ -47,27 +47,52 @@ export default class MainCssController {
    * Generate the Css Content.
    * @param order sushi neta
    */
-  generateContent(): string {
+  private generateContent(): string {
     //resフォルダを強引に取得
     const resPath = path.join(__dirname.substring(0, __dirname.length - 4), 'res');
     const resPngs = fs.readdirSync(resPath);
 
+    //ランダムで8個のSushiを選択
     let urls = "";
-    for(let i = 0; i < resPngs.length; i++){
+    for(let i = 0; i < 8; i++){
       urls += "url\\(";
-      urls += path.join(resPath, resPngs[i]).replace(/\\/g, '\\\\\\\\\\\\\\\\');
+      urls += path.join(resPath, resPngs[this.getRandomInt(0,24)]).replace(/\\/g, '\\\\\\\\\\\\\\\\');
       urls += "\\)"
-      if (i < resPngs.length - 1){
+      if (i < 8 - 1){
         urls += ",";
       }
     }
 
     const prefs = vscode.workspace.getConfiguration('SushiBuffetPreferences');
     const opacity = prefs.get<number|undefined>('opacity') ? prefs.get<number|undefined>('opacity') : 0.8;
+    const origin = "40% 20%,60% 20%,80% 40%,80% 60%,60% 80%,40% 80%,20% 60%,20% 40%";
+    const positionArr = [
+      "0% \\{background-position:40% 20%,60% 20%,80% 40%,80% 60%,60% 80%,40% 80%,20% 60%,20% 40%;\\}",
+      "12.5% \\{background-position:60% 20%,80% 40%,80% 60%,60% 80%,40% 80%,20% 60%,20% 40%,40% 20%;\\}",
+      "25% \\{background-position:80% 40%,80% 60%,60% 80%,40% 80%,20% 60%,20% 40%,40% 20%,60% 20%;\\}",
+      "37.5% \\{background-position:80% 60%,60% 80%,40% 80%,20% 60%,20% 40%,40% 20%,60% 20%,80% 40%;\\}",
+      "50% \\{background-position:60% 80%,40% 80%,20% 60%,20% 40%,40% 20%,60% 20%,80% 40%,80% 60%;\\}",
+      "62.5% \\{background-position:40% 80%,20% 60%,20% 40%,40% 20%,60% 20%,80% 40%,80% 60%,60% 80%;\\}",
+      "75% \\{background-position:20% 60%,20% 40%,40% 20%,60% 20%,80% 40%,80% 60%,60% 80%,40% 80%;\\}",
+      "87.5% \\{background-position:20% 40%,40% 20%,60% 20%,80% 40%,80% 60%,60% 80%,40% 80%,20% 60%;\\}",
+      "100% \\{background-position:40% 20%,60% 20%,80% 40%,80% 60%,60% 80%,40% 80%,20% 60%,20% 40%;\\}"
+    ]
+
+    //ポジションを全て結合
+    const position = positionArr.join("")
     
-    return `/\\*ext-${this.extName}-start\\*/body\\{background-image:${urls};background-position:left top, 25% top, 50% top, 75% top, right top,left 25%, 25% 25%, 50% 25%, 75% 25%, right 25%,left 50%, 25% 50%, 50% 50%, 75% 50%, right 50%,left 75%, 25% 75%, 50% 75%, 75% 75%, right 75%,left bottom, 25% bottom, 50% bottom, 75% bottom, right bottom;background-repeat:no-repeat;background-attachment:fixed;background-size:auto 20%;opacity:${opacity};animation:slideIn 2.5s ease-in-out 1s 1 normal\\}@keyframes slideIn \\{0% \\{opacity: ${opacity};background-position:100% top, 150% top, 150% top, 150% top, 150% top, 150% 25%, 125% 25%, 150% 25%, 150% 25%, 150% 25%, 150% 50%, 150% 50%, 150% 50%, 150% 50%, 150% 50%, 150% 75%, 150% 75%, 150% 75%, 175% 75%, 150% 75%, 150% bottom, 150% bottom, 150% bottom, 150% bottom, 200% bottom;\\}50% \\{opacity: ${opacity};background-position:-200% top, 150% top, 150% top, 150% top, 150% top, 150% 25%, -175% 25%, 150% 25%, 150% 25%, 150% 25%, 150% 50%, 150% 50%, -150% 50%, 150% 50%, 150% 50%, 150% 75%, 150% 75%, 150% 75%, -125% 75%, 150% 75%, 150% bottom, 150% bottom, 150% bottom, 150% bottom, -100% bottom;\\}100% \\{opacity: ${opacity};background-position:left top, 25% top, 50% top, 75% top, right top,left 25%, 25% 25%, 50% 25%, 75% 25%, right 25%,left 50%, 25% 50%, 50% 50%, 75% 50%, right 50%,left 75%, 25% 75%, 50% 75%, 75% 75%, right 75%,left bottom, 25% bottom, 50% bottom, 75% bottom, right bottom;\\}\\}/\\*ext-${this.extName}-end\\*/`;
+    return `/\\*ext-${this.extName}-start\\*/body\\{background-image:${urls};background-position:${origin};background-repeat:no-repeat;background-attachment:fixed;background-size:auto 15%;opacity:${opacity};animation-name:rotate;animation-duration:20s;animation-timing-function:linear;animation-iteration-count:infinite;\\}@keyframes rotate \\{${position}\\}/\\*ext-${this.extName}-end\\*/`;
   }
 
+  private getRandomInt(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  }
+
+  /**
+   * Add css content to workbench.main.css.
+   */
   addCssContent() {
     const content = this.generateContent();
     const delContent = `/\\*ext-${this.extName}-start\\*/.*/\\*ext-${this.extName}-end\\*/`;

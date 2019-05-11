@@ -1,13 +1,15 @@
 # sushi-buffet README
 
-all-you-can-eat Sushi while you are coding on VS Code.
+Enjoy Kaiten-Sushi while you are coding on VS Code.
 
 ## Features
 
 お寿司が好きな IT エンジニアのための拡張機能です。
-設定を有効にすると、VS Code の新しいウィンドウを立ち上げたときに寿司が流れます。
+設定を有効にすると、VS Code で回転寿司が楽しめます。
 
-![demo](flow_sushi_release.gif)
+![demo](kaiten_sushi_release.gif)
+
+寿司ネタは VS Code 立ち上げ時にランダムで選択されます。
 
 Windows 10 で動作確認済、Mac は未確認です。ご容赦ください。
 
@@ -27,7 +29,7 @@ VS Code の画面を構成する`workbench.main.css`を直接編集するため�
 
 アンインストール後、\[サポート対象外]の表示や上記エラーメッセージが消えない場合は、次をお試しください。
 
-* `workbench.main.css`を開いていただき、最後の改行を消す
+* `workbench.main.css`を開き、最終行の改行を消す
 * または、`workbench.main.css.backup`に置き換える
 
 VS Code を再起動すれば表記がなくなります。
@@ -37,19 +39,23 @@ VS Code を再起動すれば表記がなくなります。
 設定画面から "Sushi Buffet Preferences" を検索すると、次の設定項目があります。
 設定を変更した場合、次の VS Code ウィンドウの立ち上げ時から有効になります。
 
-* `sushiBuffet.enable`: 壁紙にお寿司を設定します。
-* `sushiBuffet.opacity`: お寿司の透過率を設定します。0.1 ~ 1の範囲で設定してください。
+* `SushiBuffetPreferences.enable`: 壁紙に回転寿司を設定します。
+* `SushiBuffetPreferences.opacity`: お寿司の透過率を設定します。0.1 ~ 1の範囲で設定してください。
+
+`enable`をオンにすると`workbench.main.css`に構文を書き込み、
+オフにすると書き込んだ構文を削除します。
 
 ## Command
 
-* `extension.reset`: `workbench.main.css`の記述をリセットします。
-
-なお、`sushiBuffet.enable`が無効になっている場合、拡張機能が非アクティブ化（ウィンドウを閉じる等）するたびに
-`workbench.main.css`の記述を元の状態に戻しています。
-
-そのため、このコマンド自体はあまり意味はありません。。。
+コマンドは特にありません。
 
 ## Release Notes
+
+### 2.0.0
+
+「これ流れ寿司ですよね？回転寿司じゃないですよね？？」
+
+という指摘をもらったので回転寿司に改良しました。
 
 ### 1.0.0
 

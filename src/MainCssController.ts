@@ -94,11 +94,16 @@ export default class MainCssController {
    * Add css content to workbench.main.css.
    */
   addCssContent() {
+    if (!fs.existsSync(this.backupName)) {
+      vscode.window.showErrorMessage("workbench.main.css.backupが見つからなかったため処理を中止します")
+      return
+    }
+    
     const content = this.generateContent();
     const delContent = `/\\*ext-${this.extName}-start\\*/.*/\\*ext-${this.extName}-end\\*/`;
     console.log(content);
 
-    cp.exec(`sed -i -e "s|${delContent}||g" -e "$a ${content}" -e "/^[<space><tab>]*$/d" "${this.mainCssPath}"`, (err, stdout, stderr) => {
+    cp.exec(`sed -i -e "s|${delContent}||g" -e "$a ${content}" -e "/^[<space><tab>]*$/d" "${this.mainCssPath}"`, {cwd: this.mainCssPath} , (err, stdout, stderr) => {
       if (err) {
         console.log(err);
       } else {

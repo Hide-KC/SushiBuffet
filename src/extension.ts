@@ -54,14 +54,18 @@ function getMainCssPath(): string {
 }
 
 export function deactivate() {
+  const ext = vscode.extensions.getExtension('kcpoipoi.sushi-buffet')
+  console.log(ext!.isActive)
+  
   const prefs = vscode.workspace.getConfiguration("SushiBuffetPreferences");
   const enable = prefs.get<boolean|undefined>('enable');
 
-  if (require.main && !enable){
+  if (require.main && ext && (enable === false || !ext.isActive)){
     const base = path.dirname(require.main.filename);
     const filePath = path.join(base, 'vs', 'workbench', 'workbench.main.css');
-
     const controller = MainCssController.getInstance('sushi-buffet', filePath);
-    controller.resetCssContent();
+    
+    prefs.update('enable', false)
+    controller.resetCssContent()
   }
 }

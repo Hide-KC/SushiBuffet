@@ -103,7 +103,7 @@ export default class MainCssController {
     const delContent = `/\\*ext-${this.extName}-start\\*/.*/\\*ext-${this.extName}-end\\*/`;
     console.log(content);
 
-    cp.exec(`sed -i -e "s|${delContent}||g" -e "$a ${content}" -e "/^[<space><tab>]*$/d" "${this.mainCssPath}"`, {cwd: this.mainCssPath} , (err, stdout, stderr) => {
+    cp.exec(`sed -i -e "s|${delContent}||g" -e "$a ${content}" -e "/^[<space><tab>]*$/d" "${this.mainCssPath}"`, (err, stdout, stderr) => {
       if (err) {
         console.log(err);
       } else {

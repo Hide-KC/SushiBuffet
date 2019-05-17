@@ -1,8 +1,11 @@
 import MainCssController from "./MainCssController";
-import * as path from 'path';
 import { getMainCssPath } from "./util/CssUtils";
+import * as vscode from 'vscode';
 
-export default function onUninstalled() {
+function onUninstalled() {
+  const prefs = vscode.workspace.getConfiguration("SushiBuffetPreferences")
+  prefs.update('enable', false)
+  
   const mainCssPath = getMainCssPath()
   
   if (mainCssPath) {
@@ -10,3 +13,5 @@ export default function onUninstalled() {
     controller.resetCssContent()
   }
 }
+
+onUninstalled()

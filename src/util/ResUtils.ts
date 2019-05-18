@@ -5,7 +5,8 @@ import * as path from 'path';
  * リソースフォルダの絶対パスを返す
  */
 export function getResPath(): string {
-  return path.join(__dirname.substring(0, __dirname.length - 4), 'res');
+  // TODO 9文字削って相対参照はやばい
+  return path.join(__dirname.substring(0, __dirname.length - 9), 'res');
 }
 
 /**

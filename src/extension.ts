@@ -1,18 +1,25 @@
 import * as vscode from 'vscode';
-import * as path from 'path';
-import MainCssController from './MainCssController';
+import * as cssUtils from './util/CssUtils';
+import { MainCssManager } from './MainCssManager';
+import { SushiMoveFactory } from './move/SushiMoveFactory';
+import { MoveTypeEnum, Factory } from './move/Factory';
+import { SushiMove } from './move/SushiMove';
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate() {
+  // 設定値を取得
   const prefs = vscode.workspace.getConfiguration("SushiBuffetPreferences")
   const enable = prefs.get<boolean|undefined>('enable')
+  
+  // Cssを操作するManagerを生成
+  const manager = new MainCssManager()
+  const factory: Factory<SushiMove> = new SushiMoveFactory()
+  manager.setSushiMove(factory.create(MoveTypeEnum.KAITEN))
 
-  const filePath = getMainCssPath()
+  const filePath = cssUtils.getMainCssPath()
   console.log(filePath);
 
-  if (filePath !== "" && enable){
-    const controller = MainCssController.getInstance('sushi-buffet', filePath);
-    controller.generateBackup();
-    controller.addCssContent();
+  if (filePath && enable){
+    manager.addContent()
   }
 
   //configuration changed
@@ -20,14 +27,13 @@ export function activate(context: vscode.ExtensionContext) {
     //Sushi buffet でなければ return
     if (!listener.affectsConfiguration("SushiBuffetPreferences")) return
 
-    const filePath = getMainCssPath()
-
-    //workbench.main.cssパスが取得できなかったらreturn
-    if (filePath === "") {
+    //workbench.main.cssパスがnullだったらreturn
+    if (!filePath) {
       console.error("Can't get workbench.main.css Path.")
       return
     }
     
+    //prefsの再呼び出しは冗長かも？
     const prefs = vscode.workspace.getConfiguration("SushiBuffetPreferences")
     const enable = prefs.get<boolean|undefined>('enable')
     const opacity = prefs.get<number|undefined>('opacity')
@@ -35,22 +41,12 @@ export function activate(context: vscode.ExtensionContext) {
     console.log("Prefs.enable: " + enable)
     console.log("Prefs.opacity: " + opacity)
 
-    const controller = MainCssController.getInstance('sushi-buffet', filePath)
-
     if (!enable) {
-      controller.resetCssContent()
+      manager.removeContent()
     } else if (opacity) {
-      controller.addCssContent()
+      manager.addContent()
     }
   })
-}
-
-function getMainCssPath(): string {
-  if (require.main){
-    const base = path.dirname(require.main.filename);
-    return path.join(base, 'vs', 'workbench', 'workbench.main.css');  
-  }
-  return ""
 }
 
 export function deactivate() {
@@ -61,11 +57,8 @@ export function deactivate() {
   const enable = prefs.get<boolean|undefined>('enable');
 
   if (require.main && ext && (enable === false || !ext.isActive)){
-    const base = path.dirname(require.main.filename);
-    const filePath = path.join(base, 'vs', 'workbench', 'workbench.main.css');
-    const controller = MainCssController.getInstance('sushi-buffet', filePath);
-    
     prefs.update('enable', false)
-    controller.resetCssContent()
+    const manager = new MainCssManager()
+    manager.removeContent()
   }
 }

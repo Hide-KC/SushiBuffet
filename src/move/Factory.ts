@@ -1,4 +1,6 @@
-export type Factory<T> = {}
+export type Factory<T> = {
+  create(move: MoveTypeEnum): T
+}
 
 export enum MoveTypeEnum {
   KAITEN,

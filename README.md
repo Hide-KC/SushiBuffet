@@ -25,15 +25,6 @@ VS Code の画面を構成する`workbench.main.css`を直接編集するため�
 万が一環境を汚してしまった場合は、`workbench.main.css`ファイルを削除し、
 `workbench.main.css.backup`を利用してください（`.backup`の拡張子は消してください。）。
 
-### Uninstall
-
-アンインストール後、\[サポート対象外]の表示や上記エラーメッセージが消えない場合は、次をお試しください。
-
-* `workbench.main.css`を開き、最終行の改行を消す
-* または、`workbench.main.css.backup`に置き換える
-
-VS Code を再起動すれば表記がなくなります。
-
 ## Extension Settings
 
 設定画面から "Sushi Buffet Preferences" を検索すると、次の設定項目があります。
@@ -45,11 +36,26 @@ VS Code を再起動すれば表記がなくなります。
 `enable`をオンにすると`workbench.main.css`に構文を書き込み、
 オフにすると書き込んだ構文を削除します。
 
+### Uninstall
+
+設定画面 → `SushiBuffetPreferences.enable`のチェックを外してからアンインストールしてください。
+
+アンインストール後、\[サポート対象外]の表示や上記エラーメッセージが消えない場合は、次をお試しください。
+
+* `workbench.main.css`を開き、最終行の改行を消す
+* または、`workbench.main.css.backup`に置き換える
+
+VS Code を再起動すれば表記がなくなります。
+
 ## Command
 
 コマンドは特にありません。
 
 ## Release Notes
+
+### 2.0.1
+
+コードの整理、拡張機能のアンインストールをフックし`workbench.main.css`をリセットする処理を追加（β版）。
 
 ### 2.0.0
 
